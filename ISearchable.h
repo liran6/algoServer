@@ -8,7 +8,7 @@
 #include "State.h"
 #include <vector>
 using namespace std;
-//Searchable interface.
+//Searchable interface./
 template<typename N>
 class ISearchable
 {
