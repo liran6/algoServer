@@ -11,7 +11,7 @@
 
 
 using namespace std;
-namespace ‫‪server_side{
+
 
 class Server {
 
@@ -34,7 +34,6 @@ public:
     void stop();
 
 };
-}
 
 
 #endif //UNTITLED6_NAMESPACE_H

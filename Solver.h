@@ -5,7 +5,11 @@
 #ifndef UNTITLED6_SOLVER_H
 #define UNTITLED6_SOLVER_H
 //template <class >
-class Solver{
-
+template<typename P, typename S>
+class Solver
+{
+public:
+    virtual S solve(P &problem) = 0;
+    virtual ~Solver(){};
 };
 #endif //UNTITLED6_SOLVER_H

@@ -7,10 +7,11 @@
 #ifndef UNTITLED6_CLIENTHANDLER_H
 #define UNTITLED6_CLIENTHANDLER_H
 
-class ClientHandler{
+class ClientHandler {
 
     void handleClient(int socket);
 
 };
+
 
 #endif //UNTITLED6_CLIENTHANDLER_H

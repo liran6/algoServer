@@ -2,10 +2,11 @@
 // Created by yuval on 1/13/19.
 //
 
-#include <bits/socket_type.h>
-#include <bits/socket.h>
+
+
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <unistd.h>
 #include "MySerialServer.h"
 
 using namespace std;
@@ -20,7 +21,7 @@ MySerialServer::MySerialServer(int port, int sockfd, int newsockfd, ClientHandle
 
 void MySerialServer ::open(int port, ClientHandler *c) {
 
-    this->socket_info->port = port;
+    socket_info->port = port;
     int s = socket(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in serv;
     serv.sin_addr.s_addr = INADDR_ANY;
@@ -41,6 +42,7 @@ void MySerialServer ::open(int port, ClientHandler *c) {
 
     setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout));
     new_sock = accept(s, (struct sockaddr*)&client, &clilen);
+    socket_info->newsockfd = new_sock;
     if (new_sock < 0)	{
         if (errno == EWOULDBLOCK)	{
             cout << "timeout!" << endl;
@@ -53,11 +55,8 @@ void MySerialServer ::open(int port, ClientHandler *c) {
     cout << new_sock << endl;
     cout << s << endl;
     cout << "succeed to connect" << endl;
-    //close(new_sock);
-    //close(s);
-    //return 0;
-
 }
 void MySerialServer ::stop() {
-
+    close(socket_info->port);
+    close(socket_info->sockfd);
 };

@@ -6,6 +6,7 @@
 #define UNTITLED6_MYSERIALSERVER_H
 
 #include "Server.h"
+#include "ClientHandler.h"
 
 
 
