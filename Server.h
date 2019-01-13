@@ -7,19 +7,31 @@
 
 
 #include "ClientHandler.h"
+#include "string"
 
-namespace ‫‪server_side{
+
+using namespace std;
+
+
 class Server {
+
+
+public:
+    Server() {
+    };
+
+
 /**
  * open
  * @param port port number for openning the server.
  */
-void open(int port, ClientHandler c);
+    void open(int port, ClientHandler *c);
+
 /**
  * stop
  * this function close the server.
  */
-void stop();
+    void stop();
 
 };
 
