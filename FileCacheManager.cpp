@@ -3,3 +3,15 @@
 //
 
 #include "FileCacheManager.h"
+
+FileCacheManager::FileCacheManager(string &path) {
+this->probAndSolFile = path;
+}
+
+void FileCacheManager::loadSolutions() {
+
+}
+
+void FileCacheManager::saveSolutions() {
+
+}

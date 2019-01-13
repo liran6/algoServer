@@ -4,11 +4,16 @@
 
 #ifndef UNTITLED6_FILECACHEMANAGER_H
 #define UNTITLED6_FILECACHEMANAGER_H
-
-
 #include "CacheManager.h"
+using namespace std;
 
-class FileCacheManager : public CacheManager{
+class FileCacheManager : public CacheManager<string, string, string>{
+
+public:
+    FileCacheManager(string &path);
+    virtual void loadSolutions();
+    virtual void saveSolutions();
+    virtual ~FileCacheManager(){};
 
 };
 
