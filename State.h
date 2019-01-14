@@ -9,12 +9,16 @@ template < typename N>
 
 class State{
 private:
-    N node;
-    double cost = 0;
-    State<N>* cameFrom = nullptr;
+    N* node;
+    double cost;
+    State<N>* cameFrom;
 
 public:
-    State(){}
+    State(N* node, double cost){
+        this->node = node;
+        this->cost = cost;
+        this->cameFrom = nullptr;
+    }
 //    State(N &node){
 //        this->node = node;
 //    }

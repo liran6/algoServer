@@ -10,8 +10,8 @@
 
 
 class MyTestClientHandler : public ClientHandler{
-    Solver solver;
-    CacheManager cm;
+//    Solver solver;
+//    CacheManager cm;
 
 };
 

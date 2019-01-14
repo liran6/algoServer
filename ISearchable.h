@@ -15,7 +15,7 @@ class ISearchable
 public:
     virtual State<N>* getInitialState() = 0;
     virtual State<N>* getGoalState() = 0;
-    virtual vector<State<N>*> getAllPosibbleState(State<N>*) = 0;
+    virtual vector<State<N>*> getAllPossibleState(State<N> *state) = 0;
     virtual ~ISearchable(){};
 };
 #endif //UNTITLED6_ISEARCHABLE_H
