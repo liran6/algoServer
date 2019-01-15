@@ -13,13 +13,13 @@
 
 
 using namespace std;
-template<typename P, typename S, typename F>
+template<typename P, typename S >//typename F>
 
 
 class CacheManager{
 protected:
     map<P, S> probAndSol;
-    F probAndSolFile;
+    //F probAndSolFile;
 
 virtual bool isTheProblemExist(P &problem) {
     //if a solution to the problem has already cached.

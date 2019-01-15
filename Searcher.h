@@ -4,12 +4,25 @@
 
 #ifndef UNTITLED6_SEARCHER_H
 #define UNTITLED6_SEARCHER_H
-#include "ISearchable.h"
+
+#include <deque>
+#include <set>
+#include "ISearcher.h"
+#include "Greater.h"
 using namespace std;
-template <typename S, typename  P>
-class Searcher {
+template <typename S, typename  N>
+class Searcher : public ISearcher<S, N>
+{
+    int evaluatedNodes;
+protected:
+    deque<State<N>*> dequeOpenList;
+    multiset<State<N>, Greater<N>>multisetOpenList;
 public:
-    virtual S search (ISearchable<P> searchable) = 0;
+    Searcher(){
+        this->evaluatedNodes = 0;
+    }
+
+    virtual S search (ISearchable<N> searchable) = 0;
     virtual int getNumberOfNodesEvaluated() = 0;
 
 };
