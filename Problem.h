@@ -5,8 +5,12 @@
 #ifndef UNTITLED6_PROBLEM_H
 #define UNTITLED6_PROBLEM_H
 
-
+template <typename p>
 class Problem {
+public:
+    Problem(p problem) {
+
+    }
 
 };
 
