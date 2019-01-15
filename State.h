@@ -14,10 +14,10 @@ private:
     State<N>* cameFrom = nullptr;
 
 public:
-
-    State(N &node){
-        this->node = node;
-    }
+    State(){}
+//    State(N &node){
+//        this->node = node;
+//    }
     bool operator==(State<N> state) {
         return this->node == state.getNode();
     }
