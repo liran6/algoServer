@@ -1,4 +1,3 @@
-/*
 //
 // Created by yuval on 1/13/19.
 //
@@ -14,27 +13,33 @@
 #include <strings.h>
 #include <memory.h>
 #include "Server.h"
-#include "ThreadsPool.h"
+#include "MyClientHandler.h"
 
 using namespace std;
 
+
+
 class MyParallelServer : public Server{
+
+    pthread_t* thread;
     pthread_mutex_t mutex_sockets_list;
-    //the next vector contains all the threads which solving the problems with the cacheManager.
+    pthread_mutex_t mutex_threads_vector;
+
     vector<pthread_t*> vector_of_threads;
     //the next vector contains all the sockets which currently open and holds the threads .
-    vector<sockaddr> vector_of_sockets;
-
+    vector<int> vector_of_sockets;
 
 public:
+    struct ClientArgs{
+        MyClientHandler* MyCH;
+        int clientSockNum;
+    };
 
-    */
-/**
+    /**
  * open
  * @param port port number for openning the server.
- *//*
-
-    void open(int port, ClientHandler* c) {
+ */
+    void open(int port, MyClientHandler* c) {
         int sockPort = port;
         int s = socket(AF_INET, SOCK_STREAM, 0);
         if (s < -1) {
@@ -51,6 +56,7 @@ public:
         }
 
         int new_clientSocket;
+        ClientArgs* clientArgs = new ClientArgs;
         listen(s, 5);
         struct sockaddr_in clientAddres;
         socklen_t clilen = sizeof(clientAddres);
@@ -73,47 +79,74 @@ public:
                 exit(2);
             };
 
-            new_clientSocket = accept(s, (struct sockaddr *) &clientAddres, &clilen);
 
+            new_clientSocket = accept(s, (struct sockaddr *) &clientAddres, &clilen);
             if (new_clientSocket < 0) {
                 cerr << "Unfortunately, the client could not connect." << endl;
             }
+            if(vector_of_threads.size() >= THREAD_POOL_SIZE){
+                cerr << "There is no available thread." << endl;
+                close(new_clientSocket);
+                exit(2);
+            }
+
+            //add a new socket to list.
             pthread_mutex_lock(&mutex_sockets_list);
-            listOfSockets.push_back(s);
+            vector_of_sockets.push_back(new_clientSocket);
             pthread_mutex_unlock(&mutex_sockets_list);
 
-            Task *tsk = new Task(handleClient1, (void*) new_clientSocket);
-            listOfTasks.push_back(tsk);
-            ->addTask(tsk);
+            //update the struct of arguments with new client info.
+            clientArgs->MyCH = c;
+            clientArgs->clientSockNum = new_clientSocket;
+
+            //initialize new thread with execute who communicates with MyClientHandler.
+            thread = new pthread_t;
+            pthread_create(thread, NULL, execute, clientArgs);
+
+            //add a new thread to the list of thread.
+            pthread_mutex_lock(&mutex_threads_vector);
+            vector_of_threads.push_back(thread);
+            pthread_mutex_unlock(&mutex_threads_vector);
+
+
 
             sleep(1);
         }
+
+        stop(s);
     }
 
-    */
-/**
- * start
- * this function starts the thread role.
- *//*
+    static void *execute(void *arg){
+        struct ClientArgs* clientArgsToHandle = (struct ClientArgs*) arg;
+        MyClientHandler* ch = clientArgsToHandle->MyCH;
+        int sockForHandler = clientArgsToHandle->clientSockNum;
 
-    void start(){
+        ch->handleClient(sockForHandler);
 
     }
 
-
-*/
 /**
  * stop
  * this function close the server.
- *//*
+ */
+    void stop(int socket_s){
+        for (int i = 0; i < vector_of_sockets.size(); i++) {
+            close(vector_of_sockets[i]);
+        }
 
-    void stop(int new_sock, int socket_s){
-        close(new_sock);
+        for (int i = 0; i < vector_of_sockets.size(); i++) {
+            close(vector_of_sockets[i]);
+        }
+
+        pthread_mutex_destroy(&mutex_sockets_list);
+        pthread_mutex_destroy(&mutex_threads_vector);
+
+        //closing server socket and exiting program
         close(socket_s);
+        exit(0);
     }
 };
 
 
 
 #endif //UNTITLED6_MYPARALLELSERVER_H
-*/

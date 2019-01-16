@@ -9,15 +9,25 @@
 #include "ISearchable.h"
 #include "Solver.h"
 #include "CacheManager.h"
-template <typename P, typename S>
+
+
+#define THREAD_POOL_SIZE 5
+
 class MyClientHandler : public ClientHandler{
-    Solver<P, S> *solver;
-    CacheManager<P, S> *cacheManager;
+
+    Solver<ISearchable<pair<int, int>>*, vector<State<pair<int, int>*>>> *solver;
+    CacheManager<string, string> *cacheManager;
+
 public:
-    MyClientHandler(Solver<P, S> *solver, CacheManager<P, S> *cacheManager){
-        this->solver = solver;
-        this->cacheManager = cacheManager;
-    };
+
+  //  MyClientHandler(CacheManager<string, string> *cacheManager);
+
+  MyClientHandler();
+
+    CacheManager<string, string> *getCacheManager() const;
+
+    string problemSolve(string &problem);
     virtual void handleClient(int sock);
+
 };
 #endif //UNTITLED6_MYCLIENTHANDLER_H

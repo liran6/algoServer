@@ -7,6 +7,9 @@
 #include "ISearchable.h"
 #include <list>
 #include <vector>
+#include <string>
+#include <stdexcept>
+
 using namespace std;
 
 class SearchableMatrix : public ISearchable<pair<int,int>>

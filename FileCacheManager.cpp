@@ -1,8 +1,7 @@
-/*
 //
 // Created by yuval on 1/9/19.
 //
-
+/**
 #include "FileCacheManager.h"
 
 FileCacheManager::FileCacheManager(string &path) {
@@ -16,4 +15,4 @@ void FileCacheManager::loadSolutions() {
 void FileCacheManager::saveSolutions() {
 
 }
-*/
+**/
