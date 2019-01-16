@@ -9,7 +9,7 @@
 #define UNTITLED6_MYTESTCLIENTHANDLER_H
 
 
-class MyTestClientHandler : public ClientHandler{
+class MyTestClientHandler : public server_side::ClientHandler{
 //    Solver solver;
 //    CacheManager cm;
 

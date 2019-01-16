@@ -9,11 +9,14 @@
 #include "ISearchable.h"
 #include "Solver.h"
 #include "CacheManager.h"
-
+#include <sys/socket.h>
+#include <sstream>
+#include <unistd.h>
+#include <string.h>
 
 #define THREAD_POOL_SIZE 5
 
-class MyClientHandler : public ClientHandler{
+class MyClientHandler : public server_side::ClientHandler{
 
     Solver<ISearchable<pair<int, int>>*, vector<State<pair<int, int>*>>> *solver;
     CacheManager<string, string> *cacheManager;
@@ -22,7 +25,7 @@ public:
 
   //  MyClientHandler(CacheManager<string, string> *cacheManager);
 
-  MyClientHandler();
+  MyClientHandler() = default;
 
     CacheManager<string, string> *getCacheManager() const;
 
