@@ -49,7 +49,7 @@ public:
         {
             State<N>* n = Searcher< N>::popDequeOpenList(IS_USING_STACK);
             closed.push_back(n);
-            bool x = *searchable->getGoalState() == *n;
+            //bool x = *searchable->getGoalState() == *n;
             if (*(searchable->getGoalState()) == *n) {
                return Searcher<N>::backTrace(n, searchable);
             }
