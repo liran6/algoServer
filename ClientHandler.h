@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <vector>
+#include "CacheManager.h"
 
 
 #ifndef UNTITLED6_CLIENTHANDLER_H
@@ -10,6 +11,7 @@
 using namespace std;
 
 class ClientHandler {
+
 public:
 
     virtual void handleClient(int socket) = 0;

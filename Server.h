@@ -8,11 +8,8 @@
 
 #include "ClientHandler.h"
 #include "string"
-#include "Task.h"
-#include "ThreadsPool.h"
-
-
-
+#include "MyClientHandler.h"
+#define THREAD_POOL_SIZE 5
 
 using namespace std;
 
@@ -20,29 +17,23 @@ class Server {
     int port;
     int serverSocket;
 
-    ThreadsPool *threadsPool;
 public:
+    //vector<Task *> listOfTasks;
+    //vector<int> listOfSockets;
+    //static void *execute(void *arg);
 
-    vector<Task *> listOfTasks;
-    vector<int> listOfSockets;
 
-//constructor
-    Server(int port);
 /**
  * open
  * @param port port number for openning the server.
  */
-    void open(int port, ClientHandler *c);
-/**
- * start
- * this function managed the threads.
- */
-    void start();
+    virtual void open(int port, MyClientHandler *c);
+
 /**
  * stop
  * this function close the server.
  */
-    void stop(int new_sock, int socket_s);
+    void stop(int socket_s);
 
 };
 

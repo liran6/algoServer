@@ -1,6 +1,7 @@
 //
 // Created by yuval on 1/9/19.
 //
+
 #ifndef UNTITLED6_CACHEMANAGER_H
 #define UNTITLED6_CACHEMANAGER_H
 
