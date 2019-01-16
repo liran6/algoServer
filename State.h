@@ -4,6 +4,8 @@
 
 #ifndef UNTITLED6_STATE_H
 #define UNTITLED6_STATE_H
+
+#include <utility>
 using namespace std;
 template < typename N>
 
@@ -22,12 +24,16 @@ public:
 //    State(N &node){
 //        this->node = node;
 //    }
-    bool operator==(State<N> state) {
-        return this->node == state.getNode();
+    bool operator == (State<N> state) {
+        return (*this->node) == *state.getNode();
     }
+//    bool Equals(State<N> &other)
+//    {
+//        return this->node == other.getNode();
+//    }
 
-    N getNode() const {
-        return node;
+    N* getNode() const {
+        return this->node;
     }
 
     void setNode(N node) {

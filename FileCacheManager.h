@@ -1,3 +1,4 @@
+/*
 //
 // Created by yuval on 1/9/19.
 //
@@ -19,3 +20,4 @@ public:
 
 
 #endif //UNTITLED6_FILECACHEMANAGER_H
+*/

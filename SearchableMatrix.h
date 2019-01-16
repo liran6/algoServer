@@ -73,26 +73,27 @@ public:
     virtual State<pair<int,int>>* getGoalState(){
         return this->goalState;
     }
-    virtual vector<State<pair<int,int>>*> getAllPossibleState(State<pair<int,int>>* state){
+
+    virtual vector<State<pair<int,int>>*> getAllPossibleState(State<pair<int,int>> *state){
         vector<State<pair<int,int>>*> possibleStates;
         int x = this->width - 1 , y = this->length - 1;
-        int vertexX = state->getNode().second , vertexY = state->getNode().first;
+        int vertexX = state->getNode()->second , vertexY = state->getNode()->first;
         bool getAbove = (vertexY != 0);
         bool getBelow = (vertexY < y);
         bool getLeft = (vertexX != 0);
         bool getRight = (vertexX < x);
 
-        //if for some reason the vertex is out of bounds
-        if(vertexX > x || vertexY > y){
-            throw runtime_error("vertex out of bounds, can't scan for possible states");
-
-        }
+//        //if for some reason the vertex is out of bounds
+//        if(vertexX > x || vertexY > y){
+//            throw runtime_error("vertex out of bounds, can't scan for possible states");
+//
+//        }
 
         if(getAbove){
-            possibleStates.push_back(&this->matrix[vertexY + 1][vertexX]);
+            possibleStates.push_back(&this->matrix[vertexY - 1][vertexX]);
         }
         if(getBelow){
-            possibleStates.push_back(&this->matrix[vertexY - 1][vertexX]);
+            possibleStates.push_back(&this->matrix[vertexY + 1][vertexX]);
         }
         if (getLeft){
             possibleStates.push_back(&this->matrix[vertexY][vertexX-1]);

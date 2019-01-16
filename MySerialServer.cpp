@@ -1,3 +1,4 @@
+/*
 //
 // Created by yuval on 1/13/19.
 //
@@ -59,4 +60,4 @@ void MySerialServer ::open(int port, ClientHandler *c) {
 void MySerialServer ::stop() {
     close(socket_info->port);
     close(socket_info->sockfd);
-};
+};*/

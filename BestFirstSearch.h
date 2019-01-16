@@ -1,0 +1,8 @@
+//
+// Created by liran-baruch on 1/16/19.
+//
+
+#ifndef UNTITLED6_BESTFIRSTSEARCH_H
+#define UNTITLED6_BESTFIRSTSEARCH_H
+
+#endif //UNTITLED6_BESTFIRSTSEARCH_H

@@ -1,3 +1,4 @@
+/*
 //
 // Created by yuval on 1/13/19.
 //
@@ -27,10 +28,12 @@ class MyParallelServer : public Server{
 
 public:
 
-    /**
+    */
+/**
  * open
  * @param port port number for openning the server.
- */
+ *//*
+
     void open(int port, ClientHandler* c) {
         int sockPort = port;
         int s = socket(AF_INET, SOCK_STREAM, 0);
@@ -87,19 +90,23 @@ public:
         }
     }
 
-    /**
+    */
+/**
  * start
  * this function starts the thread role.
- */
+ *//*
+
     void start(){
 
     }
 
 
+*/
 /**
  * stop
  * this function close the server.
- */
+ *//*
+
     void stop(int new_sock, int socket_s){
         close(new_sock);
         close(socket_s);
@@ -109,3 +116,4 @@ public:
 
 
 #endif //UNTITLED6_MYPARALLELSERVER_H
+*/

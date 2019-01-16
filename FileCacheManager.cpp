@@ -1,3 +1,4 @@
+/*
 //
 // Created by yuval on 1/9/19.
 //
@@ -15,3 +16,4 @@ void FileCacheManager::loadSolutions() {
 void FileCacheManager::saveSolutions() {
 
 }
+*/

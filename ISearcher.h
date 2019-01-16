@@ -7,10 +7,11 @@
 #include "ISearchable.h"
 #include "State.h"
 
-template <typename S, typename N>
+template <typename N>
 class ISearcher {
 public:
-    virtual S  search (ISearchable<N>* searchable) = 0;
+    virtual vector<State<N> *>  search (ISearchable<N>* searchable) = 0;
     virtual int getNumberOfNodesEvaluated() = 0;
+    virtual vector<State<N> *> backTrace(State<N> *s, ISearchable<N> *searchable) = 0;
 };
 #endif //UNTITLED6_ISEARCHER_H
