@@ -19,7 +19,12 @@ private:
     int evaluatedNodes;
 protected:
     deque<State<N>*> dequeOpenList;
+    multiset<State<N>, Greater<N>>multisetOpenList;
 public:
+
+    Searcher(){
+        this->evaluatedNodes = 0;
+    }
      deque<State<N> *>* getDequeOpenList()  {
         return this->dequeOpenList;
     }
@@ -28,20 +33,25 @@ public:
         return multisetOpenList;
     }
 
-protected:
-    multiset<State<N>, Greater<N>>multisetOpenList;
-public:
-    Searcher(){
-        this->evaluatedNodes = 0;
+
+    bool isInDequeOpenList(State<N>* currState) {
+        for (auto it = dequeOpenList.begin(); it != dequeOpenList.end(); it++) {
+             State<N> *s = *it;
+             if (*s == *currState)
+             return true;
+        }
+            return false;
     }
-bool isInDequeOpenList(State<N>* currState) {
-    for (auto it = dequeOpenList.begin(); it != dequeOpenList.end(); it++) {
-        State<N> *s = *it;
-        if (*s == *currState)
-            return true;
+    bool isInMultisetOpenList(State<N>* currState)
+    {
+        for (auto it = multisetOpenList.begin(); it != multisetOpenList.end(); it++)
+        {
+            State<N> s = *it;
+            if(*s == *currState)
+                return true;
+        }
+        return false;
     }
-    return false;
-}
 
      int getNumberOfNodesEvaluated()  {
         return evaluatedNodes;
@@ -50,7 +60,7 @@ bool isInDequeOpenList(State<N>* currState) {
         this->dequeOpenList.push_back(state);
     }
     void addMultisetOpenList(State<N> *state) {
-        this->multisetOpenList.push_back(state);
+        this->multisetOpenList.insert(*state);
     }
     State<N>* popDequeOpenList(bool isStack) {
         this->evaluatedNodes++;
@@ -65,9 +75,10 @@ bool isInDequeOpenList(State<N>* currState) {
         return s;
     }
     State<N>* popMultisetOpenList() {
-        this->evaluateNodes++;
-        State<N> *s = multisetOpenList[0];
-        multisetOpenList.erase(multisetOpenList[0]);
+        this->evaluatedNodes++;
+        auto it = multisetOpenList.begin();
+        State<N> s = *it;
+        multisetOpenList.erase(it);
         return s;
     }
     virtual vector<State<N> *> search (ISearchable<N>* searchable)  = 0;
